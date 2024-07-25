@@ -1,6 +1,5 @@
-# ************************************
-# Python Snake
-# ************************************
+# Python Snake:
+
 from tkinter import *
 import random
 
