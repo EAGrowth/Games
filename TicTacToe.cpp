@@ -9,9 +9,22 @@ bool checkTie(char *spaces);
 
 int main()
 {
-    char player = 'X';
-    char computer = 'O';
+    char player, computer;
     bool playAgain;
+
+    std::cout << "Choose your marker (X/O): ";
+    std::cin >> player;
+
+    player = toupper(player);
+    if (player == 'X') {
+        computer = 'O';
+    } else if (player == 'O') {
+        computer = 'X';
+    } else {
+        std::cout << "Invalid choice. Defaulting to X.\n";
+        player = 'X';
+        computer = 'O';
+    }
 
     do {
         char spaces[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
@@ -95,14 +108,13 @@ void computerMove(char *spaces, char computer) {
 bool checkWinner(char *spaces, char player, char computer) {
     int winPattern = -1;
 
-    // Array of win conditions, each containing three indices for the winning line
+
     int winConditions[8][3] = {
-        {0, 1, 2}, {3, 4, 5}, {6, 7, 8}, // Rows
-        {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, // Columns
-        {0, 4, 8}, {2, 4, 6}             // Diagonals
+        {0, 1, 2}, {3, 4, 5}, {6, 7, 8},
+        {0, 3, 6}, {1, 4, 7}, {2, 5, 8},
+        {0, 4, 8}, {2, 4, 6}
     };
 
-    // Loop through the win conditions to find a winning pattern
     for (int i = 0; i < 8; ++i) {
         int a = winConditions[i][0];
         int b = winConditions[i][1];
